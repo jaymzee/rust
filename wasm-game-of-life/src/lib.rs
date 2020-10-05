@@ -1,3 +1,4 @@
+// based on the Rust and WebAssembly book tutorial at https://rustwasm.github.io/docs/book/introduction.html
 mod utils;
 
 use wasm_bindgen::prelude::*;
