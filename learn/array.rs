@@ -1,4 +1,4 @@
-// print slice of int32
+// print array
 fn foo(n: &str, slice: &[i32]) {
     print!("{} = [", n);
     for v in slice.iter() {
@@ -7,7 +7,7 @@ fn foo(n: &str, slice: &[i32]) {
     println!(" ] len={}", slice.len());
 }
 
-// mutate slice of int32, then print it
+// mutate array, then print it
 fn bar(n: &str, a: &mut[i32]) {
     if a.len() > 1 {
         a[1] += 1;
@@ -16,9 +16,9 @@ fn bar(n: &str, a: &mut[i32]) {
 }
 
 fn main() {
-    // declare arrays
-    let mut x: [i32; 3] = [1, 2, 3];
-    let y: [i32; 5] = [5, 7, 9, 11, 42];
+    // fixed size arrays
+    let mut x = [1, 2, 3];
+    let y = [5, 7, 9, 11, 42];
 
     foo("x", &x);
     bar("x", &mut x);
