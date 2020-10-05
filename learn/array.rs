@@ -1,22 +1,26 @@
-// just print the array
-fn foo(a: &[i32; 3]) {
-    print!("[");
-    for x in a.iter() {
-        print!(" {}", x);
+// just print the array (array as a slice)
+fn foo(n: &str, a: &[i32]) {
+    print!("{} = [", n);
+    for e in a.iter() {
+        print!(" {}", e);
     }
-    println!(" ]");
+    println!(" ] len={}", a.len());
 }
 
-// mutate then print array
-fn bar(a: &mut[i32; 3]) {
-    a[1] += 1;
-    foo(a);
+// mutate then print array (array as a slice)
+fn bar(n: &str, a: &mut[i32]) {
+    if a.len() > 1 {
+        a[1] += 1;
+    }
+    foo(n, a);
 }
 
 fn main() {
-    let mut arr: [i32; 3] = [1, 2, 3];
+    let mut x: [i32; 3] = [1, 2, 3];
+    let y: [i32; 5] = [5, 7, 9, 11, 42];
 
-    foo(&arr);
-    bar(&mut arr);
-    foo(&arr);
+    foo("x", &x);
+    bar("x", &mut x);
+    foo("x", &x);
+    foo("y", &y);
 }
