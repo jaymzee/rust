@@ -1,3 +1,5 @@
+// demonstrate local variables
+
 const Z: i32 = 42;
 
 fn foo(name: &str) {
