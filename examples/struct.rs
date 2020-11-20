@@ -3,7 +3,20 @@ struct Foo {
     y: i32
 }
 
+impl Foo {
+    fn bar(&self) -> i32 {
+        self.x
+    }
+
+    fn baz(&mut self) {
+        self.x += 1;
+    }
+}
+
 fn main() {
-    let s = Foo{x: 2, y: 3};
-    println!("{{ {}, {} }}", s.x, s.y);
+    let mut f = Foo{x: 2, y: 3};
+
+    println!("{} {}", f.bar(), f.y);
+    f.baz();
+    println!("{} {}", f.bar(), f.y);
 }
