@@ -29,7 +29,10 @@ fn main() {
     // fixed size arrays
     let mut x = [1, 2, 3];
     let y = [5, 7, 9, 11, 42];
-    let z = vec![8, 9, 10, 11, 12, 13];
+    let mut z = vec![8, 9, 10, 11, 12, 13];
+
+    z.push(42);
+    z.push(88);
 
     print_i32("x", &x, false);
     println!("x = {:?}", x);
@@ -39,4 +42,7 @@ fn main() {
     print_i32("y[1..4]", &y[1..4], false);
     print_i32("z", &z, false);
     print_i32("z[1..6]", &z[1..6], true);
+    if let Some(num) = z.pop() {
+        println!("num = {}", num);
+    }
 }
