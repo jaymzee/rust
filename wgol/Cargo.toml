@@ -1,0 +1,10 @@
+[package]
+name = "wgol"
+version = "0.1.0"
+authors = ["jaymzee <jaymzee@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+wgol = { package = "wasm-game-of-life", path = "../../wasm-game-of-life" }
