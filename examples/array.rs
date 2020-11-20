@@ -3,7 +3,7 @@ fn print_i32(name: &str, slice: &[i32], pretty: bool) {
     if pretty {
         println!();
     }
-    for (i, v) in slice.iter().enumerate() {
+    for (i, &v) in slice.iter().enumerate() {
         if pretty {
             print!("    ");
         } else if i > 0 {
