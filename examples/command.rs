@@ -6,7 +6,7 @@ fn main() {
         .arg("colors")
         .current_dir("/home/james/Documents")
         .stdout(Stdio::piped())
-        .status()
+        .spawn()
         .expect("command failed to start");
     */
 
@@ -18,4 +18,5 @@ fn main() {
 
     println!("status: {}", output.status);
     println!("stdout: \n{}", String::from_utf8_lossy(&output.stdout));
+    println!("stderr: \n{}", String::from_utf8_lossy(&output.stderr));
 }
