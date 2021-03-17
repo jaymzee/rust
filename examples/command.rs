@@ -19,4 +19,5 @@ fn main() {
     println!("status: {}", output.status);
     println!("stdout: \n{}", String::from_utf8_lossy(&output.stdout));
     println!("stderr: \n{}", String::from_utf8_lossy(&output.stderr));
+    assert!(output.status.success());
 }
