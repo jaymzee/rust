@@ -1,3 +1,5 @@
+// RefCell<T> and the Interior Mutability Pattern
+
 pub trait Messenger {
     fn send(&self, msg: &str);
 }
