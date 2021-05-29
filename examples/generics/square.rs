@@ -1,6 +1,8 @@
 use std::ops::Mul;
 
-fn square<T: Copy + Mul<Output=T>>(x: T) -> T {
+fn square<T>(x: T) -> T
+    where T: Copy + Mul<Output=T>
+{
     return x * x;
 }
 

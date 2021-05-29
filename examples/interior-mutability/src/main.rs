@@ -11,8 +11,7 @@ pub struct LimitTracker<'a, T: Messenger> {
 }
 
 impl<'a, T> LimitTracker<'a, T>
-where
-    T: Messenger,
+    where T: Messenger
 {
     pub fn new(messenger: &T, max: usize) -> LimitTracker<T> {
         LimitTracker {
