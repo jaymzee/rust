@@ -3,7 +3,8 @@ use rand::seq::SliceRandom;
 fn main() {
     let mut x = vec![11, 22, 33];
     let mut rng = rand::thread_rng();
-    let choice = x.choose(&mut rng).unwrap();
+    let choice = x.choose(&mut rng)
+        .expect("choose failed");
 
     println!("you picked {}", choice);
     println!("{:?}", x);

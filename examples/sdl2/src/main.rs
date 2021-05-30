@@ -8,14 +8,17 @@ use sdl2::keyboard::Keycode;
 use std::time::Duration;
 
 pub fn main() {
-    let sdl_context = sdl2::init().unwrap();
-    let video_subsystem = sdl_context.video().unwrap();
+    let sdl_context = sdl2::init()
+        .expect("initialize sdl context");
+    let video_subsystem = sdl_context.video()
+        .expect("initialize video subsystem");
     let window = video_subsystem.window("rust-sdl2 demo", 800, 600)
-        .position_centered()
-        .build()
-        .unwrap();
-    let mut canvas = window.into_canvas().build().unwrap();
-    let mut event_pump = sdl_context.event_pump().unwrap();
+        .position_centered().build()
+        .expect("create window");
+    let mut canvas = window.into_canvas().build()
+        .expect("create canvas");
+    let mut event_pump = sdl_context.event_pump()
+        .expect("create event pump");
     let mut i: u8 = 0;
 
     canvas.set_draw_color(Color::RGB(0, 255, 255));

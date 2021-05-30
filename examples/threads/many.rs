@@ -10,7 +10,8 @@ fn main() {
         .collect();
 
     for t in threads {
-        t.join().unwrap();
+        t.join()
+            .expect("failed to join main thread");
     }
     println!("done");
 }

@@ -11,14 +11,16 @@ fn main() {
         for i in 0..10 {
             thread::sleep(Duration::from_millis(50));
             let val = format!("hi {}", i);
-            tx1.send(val).unwrap();
+            tx1.send(val)
+                .expect("failed to send on channel");
         }
     });
     thread::spawn(move || {
         for i in 0..10 {
             thread::sleep(Duration::from_millis(50));
             let val = format!("bonjour {}", i);
-            tx2.send(val).unwrap();
+            tx2.send(val)
+                .expect("failed to send on channel");
         }
     });
 

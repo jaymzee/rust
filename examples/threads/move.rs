@@ -4,8 +4,9 @@ use std::time::Duration;
 fn main() {
     let v = vec![1, 2, 3];
 
-    let handle = thread::spawn(move || {
+    let th_handle = thread::spawn(move || {
         println!("here is a vector {:?}", v);
     });
-    handle.join().unwrap();
+    th_handle.join()
+        .expect("failed to join main thread");
 }
