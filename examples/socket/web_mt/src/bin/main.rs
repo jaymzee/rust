@@ -10,13 +10,15 @@ fn main() {
         .expect("Could not listen on 7878");
     let pool = ThreadPool::new(4);
 
-    for stream in listener.incoming() {
+    for stream in listener.incoming().take(2) {
         let stream = stream.unwrap();
 
         pool.execute(|| {
             handle_connection(stream);
         });
     }
+
+    println!("Shutting down.");
 }
 
 fn handle_connection(mut stream: TcpStream) {
@@ -24,7 +26,7 @@ fn handle_connection(mut stream: TcpStream) {
 
     stream.read(&mut buffer)
         .expect("failed to read stream");
-    println!("Request: {}", String::from_utf8_lossy(&buffer));
+    // println!("Request: {}", String::from_utf8_lossy(&buffer));
 
     let get = b"GET / HTTP/1.1\r\n";
     let sleep = b"GET /sleep HTTP/1.1\r\n";
