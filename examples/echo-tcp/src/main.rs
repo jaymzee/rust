@@ -6,7 +6,6 @@ async fn main() -> std::io::Result<()> {
     let listener = TcpListener::bind("127.0.0.1:8080").await?;
     println!("Listening on TCP {}", listener.local_addr()?);
 
-    foo().await;
     loop {
         let (socket, _) = listener.accept().await?;
         tokio::spawn(async move {
@@ -15,12 +14,7 @@ async fn main() -> std::io::Result<()> {
     }
 }
 
-async fn foo() {
-    println!("hey there");
-}
-
 async fn process(mut socket: TcpStream) {
-    println!("hi");
     socket.write_all(b"Hello").await
-        .expect("cannot write to socket");
+        .expect("cannot write to socket")
 }
