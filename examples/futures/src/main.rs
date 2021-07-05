@@ -1,7 +1,8 @@
-use futures::MyFuture;
+use futures::{MyFuture, AddOneFuture};
 
 fn main() {
-    let my_future = MyFuture::default();
-
-    println!("Output: {}", futures::run(my_future));
+    let f1 = MyFuture::default();
+    println!("Output: {}", futures::run(f1));
+    let f2 = MyFuture::default();
+    println!("Output: {}", futures::run(AddOneFuture(f2)));
 }
