@@ -1,5 +1,5 @@
 [package]
-name = "interior-mutability"
+name = "messenger"
 version = "0.1.0"
 authors = ["jaymzee <jaymzee@users.noreply.github.com>"]
 edition = "2018"
