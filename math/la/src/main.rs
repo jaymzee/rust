@@ -1,5 +1,5 @@
-mod inverse;
+mod solve;
 
 fn main() {
-    inverse::solve();
+    solve::example1();
 }
