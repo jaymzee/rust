@@ -1,27 +1,33 @@
-fn mean(data: &[i32]) -> Option<f32> {
-    let sum = data.iter().sum::<i32>() as f32;
-
+fn mean(data: &[f64]) -> Option<f64> {
     match data.len() {
-        n if n > 0 => Some(sum / n as f32),
+        n if n > 0 => {
+            let sum: f64 = data.iter().sum();
+            Some(sum / n as f64)
+        },
         _ => None,
     }
 }
 
-fn std_deviation(data: &[i32]) -> Option<f32> {
-    match (mean(data), data.len()) {
-        (Some(mu), n) if n > 0 => {
-            let var = data.iter().map(|&x| {
-                let dev = x as f32 - mu;
-                dev * dev
-            }).sum::<f32>() / n as f32;
-            Some(var.sqrt())
+fn variance(x: &[f64]) -> Option<f64> {
+    match mean(x) {
+        Some(mu) => {
+            let n = x.len() as f64;
+            let x2s: f64 = x.iter().map(|x| x*x).sum();
+            Some(x2s / n - mu*mu)
         },
         _ => None
     }
 }
 
+fn std_deviation(x: &[f64]) -> Option<f64> {
+    match variance(x) {
+        Some(var) => Some(var.sqrt()),
+        _ => None
+    }
+}
+
 fn main() {
-    let data = [3, 1, 6, 1, 5, 8, 1, 8, 10, 11];
+    let data = [3., 1., 6., 1., 5., 8., 1., 8., 10., 11.];
 
     let data_mean = mean(&data);
     println!("Mean is {:?}", data_mean);
@@ -31,11 +37,12 @@ fn main() {
 
     let zscore = match (data_mean, data_std_deviation) {
         (Some(mean), Some(std_deviation)) => {
-            let diff = data[4] as f32 - mean;
+            let diff = data[4] as f64 - mean;
 
             Some(diff / std_deviation)
         },
         _ => None
     };
-    println!("Z-score of data at index 4 (with value {}) is {:?}", data[4], zscore);
+    println!("Z-score of data at index 4 (with value {}) is {:?}",
+             data[4], zscore);
 }
