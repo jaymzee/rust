@@ -3,7 +3,7 @@ fn mean(data: &[f64]) -> Option<f64> {
         n if n > 0 => {
             let sum: f64 = data.iter().sum();
             Some(sum / n as f64)
-        },
+        }
         _ => None,
     }
 }
@@ -12,17 +12,17 @@ fn variance(x: &[f64]) -> Option<f64> {
     match mean(x) {
         Some(mu) => {
             let n = x.len() as f64;
-            let x2s: f64 = x.iter().map(|x| x*x).sum();
-            Some(x2s / n - mu*mu)
-        },
-        _ => None
+            let x2s: f64 = x.iter().map(|&x| x * x).sum();
+            Some(x2s / n - mu * mu)
+        }
+        _ => None,
     }
 }
 
 fn std_deviation(x: &[f64]) -> Option<f64> {
     match variance(x) {
         Some(var) => Some(var.sqrt()),
-        _ => None
+        _ => None,
     }
 }
 
@@ -40,9 +40,11 @@ fn main() {
             let diff = data[4] as f64 - mean;
 
             Some(diff / std_deviation)
-        },
-        _ => None
+        }
+        _ => None,
     };
-    println!("Z-score of data at index 4 (with value {}) is {:?}",
-             data[4], zscore);
+    println!(
+        "Z-score of data at index 4 (with value {}) is {:?}",
+        data[4], zscore
+    );
 }
